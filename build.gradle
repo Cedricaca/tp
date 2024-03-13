@@ -69,4 +69,8 @@ shadowJar {
     archiveFileName = 'addressbook.jar'
 }
 
+tasks.withType(Checkstyle) {
+    ignoreFailures = false
+}
+
 defaultTasks 'clean', 'test'
