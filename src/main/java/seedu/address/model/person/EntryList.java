@@ -1,6 +1,9 @@
 package seedu.address.model.person;
 import java.util.ArrayList;
 
+/**
+ * class for entrylist
+ */
 public class EntryList {
     private final ArrayList<Entry> entryList = new ArrayList<>();
 

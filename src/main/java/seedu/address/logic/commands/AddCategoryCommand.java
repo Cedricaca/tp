@@ -1,9 +1,11 @@
 package seedu.address.logic.commands;
 
-import java.util.List;
-import java.util.Set;
-
 import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
+
+import java.util.List;
 
 import seedu.address.commons.core.index.Index;
 import seedu.address.commons.util.ToStringBuilder;
@@ -12,18 +14,17 @@ import seedu.address.logic.commands.exceptions.CommandException;
 import seedu.address.model.Model;
 import seedu.address.model.person.Entry;
 import seedu.address.model.person.Person;
-import seedu.address.model.tag.Tag;
 
-import static seedu.address.logic.parser.CliSyntax.*;
-import static seedu.address.model.Model.PREDICATE_SHOW_ALL_PERSONS;
-
-public class AddCategoryCommand extends Command{
+/**
+ * A class to encapsulate adding a category to a user
+ */
+public class AddCategoryCommand extends Command {
     public static final String COMMAND_WORD = "addCategory";
 
     public static final String MESSAGE_USAGE = COMMAND_WORD + ": Add a category to a person "
             + "by the index number used in the displayed person list.\n "
             + "Parameters: INDEX (must be a positive integer) "
-            + "[" + PREFIX_CATEGORY+ "CATEGORY NAME] "
+            + "[" + PREFIX_CATEGORY + "CATEGORY NAME] "
             + "[" + PREFIX_DESCRIPTION + "DESCRIPTION] "
             + "Example: " + COMMAND_WORD + " 1 "
             + PREFIX_CATEGORY + "CLAN "

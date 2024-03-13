@@ -1,16 +1,27 @@
 package seedu.address.logic.parser;
 
+import static java.util.Objects.requireNonNull;
+import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_CATEGORY;
+import static seedu.address.logic.parser.CliSyntax.PREFIX_DESCRIPTION;
+
 import seedu.address.commons.core.index.Index;
 import seedu.address.logic.commands.AddCategoryCommand;
 import seedu.address.logic.commands.EditCommand;
 import seedu.address.logic.parser.exceptions.ParseException;
 import seedu.address.model.person.Entry;
 
-import static java.util.Objects.requireNonNull;
-import static seedu.address.logic.Messages.MESSAGE_INVALID_COMMAND_FORMAT;
-import static seedu.address.logic.parser.CliSyntax.*;
 
-public class AddCategoryCommandParser implements Parser<AddCategoryCommand>{
+/**
+ * Class to parser to Add category to user
+ */
+public class AddCategoryCommandParser implements Parser<AddCategoryCommand> {
+    /**
+     * Parses to create an addcategory command
+     * @param args the string
+     * @return a addcategory command
+     * @throws ParseException
+     */
     public AddCategoryCommand parse(String args) throws ParseException {
         requireNonNull(args);
         ArgumentMultimap argMultimap =
