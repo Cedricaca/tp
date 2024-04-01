@@ -83,7 +83,7 @@ public class Person implements Comparable<Person> {
 
     /**
      * Sets the new comparator for each person for group function
-     * @param category
+     * @param category to set as toCompare
      */
     public void toCompare(String category) {
         Entry entry = this.getEntry(category);
@@ -95,7 +95,14 @@ public class Person implements Comparable<Person> {
     }
 
     public int compareTo(Person person) {
-        return toCompare.compareTo(person.getToCompare());
+        if (toCompare.isEmpty() && !person.getToCompare().isEmpty()) {
+            return 1; // Treat empty string as greater
+        } else if (!toCompare.isEmpty() && person.getToCompare().isEmpty()) {
+            return -1; // Treat empty string as greater
+        } else {
+            // Compare based on natural ordering
+            return toCompare.toLowerCase().compareTo(person.getToCompare().toLowerCase());
+        }
     }
 
     public String getToCompare() {
