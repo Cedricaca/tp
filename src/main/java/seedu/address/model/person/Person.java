@@ -14,11 +14,13 @@ import seedu.address.model.tag.Tag;
  * Represents a Person in the address book.
  * Guarantees: details are present and not null, field values are validated, immutable.
  */
-public class Person {
+public class Person implements Comparable<Person> {
 
     // Identity fields
     private EntryList entryList = new EntryList();
     private Set<Tag> tags = new HashSet<>();
+
+    private String toCompare = "";
 
     /**
      * Every field must be present and not null.
@@ -80,6 +82,27 @@ public class Person {
     }
 
     /**
+     * Sets the new comparator for each person for group function
+     * @param category
+     */
+    public void toCompare(String category) {
+        Entry entry = this.getEntry(category);
+        if (entry == null) {
+            toCompare = "";
+            return;
+        }
+        toCompare = entry.getDescription();
+    }
+
+    public int compareTo(Person person) {
+        return toCompare.compareTo(person.getToCompare());
+    }
+
+    public String getToCompare() {
+        return toCompare;
+    }
+
+    /**
      * Returns true if both persons have the same identity and data fields.
      * This defines a stronger notion of equality between two persons.
      */
@@ -87,11 +110,6 @@ public class Person {
     public boolean equals(Object other) {
         if (other == this) {
             return true;
-        }
-
-        // instanceof handles nulls
-        if (!(other instanceof Person)) {
-            return false;
         }
 
         return false;

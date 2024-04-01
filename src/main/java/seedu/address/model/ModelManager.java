@@ -4,6 +4,8 @@ import static java.util.Objects.requireNonNull;
 import static seedu.address.commons.util.CollectionUtil.requireAllNonNull;
 
 import java.nio.file.Path;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.function.Predicate;
 import java.util.logging.Logger;
 
@@ -19,9 +21,10 @@ import seedu.address.model.person.Person;
 public class ModelManager implements Model {
     private static final Logger logger = LogsCenter.getLogger(ModelManager.class);
 
-    private final AddressBook addressBook;
+    private AddressBook addressBook;
     private final UserPrefs userPrefs;
-    private final FilteredList<Person> filteredPersons;
+    private FilteredList<Person> filteredPersons;
+
 
     /**
      * Initializes a ModelManager with the given addressBook and userPrefs.
@@ -109,6 +112,20 @@ public class ModelManager implements Model {
         requireAllNonNull(target, editedPerson);
 
         addressBook.setPerson(target, editedPerson);
+    }
+
+    /**
+     * Sorts the person list by the specified category
+     * @param category
+     */
+    public void groupPerson(String category) {
+        ArrayList<Person> persons = new ArrayList<>(addressBook.getPersonList());
+        for (Person person: persons) {
+            person.toCompare(category);
+        }
+        Collections.sort(persons);
+        addressBook.setPersons(persons);
+        filteredPersons = new FilteredList<>(addressBook.getPersonList());
     }
 
     //=========== Filtered Person List Accessors =============================================================

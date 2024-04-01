@@ -39,6 +39,8 @@ public interface Model {
      */
     Path getAddressBookFilePath();
 
+    void groupPerson(String category);
+
     /**
      * Sets the user prefs' address book file path.
      */
