@@ -32,6 +32,9 @@ public class GroupCommandParser implements Parser<GroupCommand> {
         if (categories.size() != 1) {
             throw new ParseException(GroupCommand.TOO_MANY_CATEGORIES);
         }
+        if (categories.get(0) == "") {
+            throw new ParseException(GroupCommand.NO_INPUT);
+        }
 
 
         return new GroupCommand(categories.get(0));
