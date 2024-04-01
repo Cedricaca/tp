@@ -94,6 +94,11 @@ public class Person implements Comparable<Person> {
         toCompare = entry.getDescription();
     }
 
+    /**
+     * Sets toCompare
+     * @param person the object to be compared.
+     * @return
+     */
     public int compareTo(Person person) {
         if (toCompare.isEmpty() && !person.getToCompare().isEmpty()) {
             return 1; // Treat empty string as greater
